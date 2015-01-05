@@ -61,7 +61,7 @@
 
     cl = clone
 
-    ci = commit
+    ci = commit -v
     cm = commit -m
     cma = commit -a -m
     ca = commit --amend

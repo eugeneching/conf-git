@@ -2,11 +2,12 @@
 [core]
     editor = /usr/bin/vim
     pager=less -x4
+	excludesfile = /Users/eugeneching/.gitignore_global
 
 #}}}
 # user {{{
 [user]
-    email = eugene@enegue.com
+	email = eugene.ching@qavar.com
     name = Eugene Ching
 
 #}}}
@@ -48,11 +49,11 @@
 #}}}
 # difftools {{{
 [difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
 # }}}
 # alias {{{
@@ -71,6 +72,10 @@
     fl = log -u
 
     ai = add --interactive
+    s = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t git add"
+    us = "!git diff --name-only --cached | fzf --print0 -m | xargs -0 -t git reset --"
+
+    unstage = reset -- 
 
     co = checkout
     br = branch

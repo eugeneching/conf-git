@@ -1,13 +1,13 @@
 # core {{{
 [core]
     editor = /usr/bin/vim
-    pager=less -x4
-	excludesfile = /Users/eugeneching/.gitignore_global
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    excludesfile = /Users/eugeneching/.gitignore_global
 
 #}}}
 # user {{{
 [user]
-	email = eugene.ching@qavar.com
+    email = eugene.ching@qavar.com
     name = Eugene Ching
 
 #}}}
@@ -39,6 +39,7 @@
     default = tracking
 [pull]
     default = current
+    rebase = true
 [diff]
   memonicprefix = true
 [branch]
@@ -49,11 +50,11 @@
 #}}}
 # difftools {{{
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 
 # }}}
 # alias {{{
@@ -75,21 +76,23 @@
     s = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t git add"
     us = "!git diff --name-only --cached | fzf --print0 -m | xargs -0 -t git reset --"
 
-    unstage = reset -- 
-
     co = checkout
     br = branch
+    sw = switch
+    rs = restore
     #"!git branch -ra | grep -v done"
     bra = branch -ra
     #list commands
     le = log --oneline --decorate
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     ls1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    lds = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
-    wc = whatchanged
-    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    ldss = log --pretty=format:"%C(yellow)%h\\ %C(green)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graph
+    lss = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    lds = log --pretty=format:"%C(yellow)%h\\ %C(green)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     lc  = "!f() { git ll "$1"^.."$1"; }; f"
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+    wc = whatchanged
     #list all aliases
     la = "!git config -l | grep alias | cut -c 7-"
     diff = diff --word-diff
@@ -149,3 +152,8 @@
     ours = "!f() { git co --ours $@ && git add $@; }; f"
     theirs = "!f() { git co --theirs $@ && git add $@; }; f"
 # }}}
+[man]
+    viewer = catman
+[man "catman"]
+    cmd = man -P \"col -b\"
+

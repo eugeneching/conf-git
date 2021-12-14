@@ -42,6 +42,7 @@
     rebase = true
 [diff]
   memonicprefix = true
+  colorMoved = zebra
 [branch]
   autosetuprebase = always
 [apply]
@@ -157,4 +158,5 @@
     viewer = catman
 [man "catman"]
     cmd = man -P \"col -b\"
-
+[fetch]
+        prune = true

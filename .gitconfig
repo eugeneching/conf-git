@@ -1,6 +1,6 @@
 # core {{{
 [core]
-    editor = /usr/bin/vim
+	editor = vim
     pager = diff-so-fancy | less --tabs=4 -RFX
     excludesfile = /Users/eugeneching/.gitignore_global
 
@@ -82,6 +82,8 @@
     br = branch
     sw = switch
     rs = restore
+    ra = rebase --abort
+    rc = rebase --continue
     #"!git branch -ra | grep -v done"
     bra = branch -ra
     #list commands
@@ -126,7 +128,7 @@
     sa = stash apply
     ss = stash save
 
-    cp = cherry-pick
+    chp = cherry-pick
     grep = grep -Ii
     gr = grep -Ii
     #grep from root folder
@@ -160,3 +162,7 @@
     cmd = man -P \"col -b\"
 [fetch]
         prune = true
+[merge]
+	conflictstyle = diff3
+[rebase]
+	conflictstyle = diff3
